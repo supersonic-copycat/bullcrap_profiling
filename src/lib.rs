@@ -20,6 +20,21 @@ pub fn pal_v2(inp: &str) -> bool {
     return true;
 }
 
+pub fn pal_v3(inp: &str) -> bool {
+    let direct = inp.chars().filter(|c| c.is_alphabetic());
+    let reverse = direct.clone().rev();
+    let len = direct.clone().count() / 2;
+    for (i, (a, b)) in direct.zip(reverse).enumerate() {
+        if i > len {
+            break;
+        }
+        if a != b {
+            return false;
+        }
+    }
+    return true;
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
