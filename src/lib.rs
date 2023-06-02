@@ -103,8 +103,15 @@ mod tests {
         assert!(pal_v4("1"));
         assert!(pal_v4("22$"));
         assert!(pal_v4("a22$"));
+        assert!(pal_v4("abba"));
+        assert!(pal_v4("aba"));
+        assert!(pal_v4("ab@ba"));
         assert!(pal_v4("22g$"));
-        assert!(!pal_v4("a22g$"));
-        assert!(pal_v4("a22g$a."));
+        assert!(pal_v4("22g🤔$"));
+        assert!(!pal_v4("a2🤡2g$"));
+        assert!(pal_v4("🤦a22g$a."));
+        assert!(pal_v4("*5,.{a22g$a.!!~]"));
+        assert!(pal_v4("aba*5,.{22$.!!~]"));
+        assert!(pal_v4("㊌㆞㊌"));
     }
 }
