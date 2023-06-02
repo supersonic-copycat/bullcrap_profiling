@@ -101,5 +101,12 @@ mod tests {
     fn v4_works() {
         assert!(!pal_v4("Hello World!!"));
         assert!(pal_v4("a556roza u_@pala na , !!! lapu azora!"));
+        assert!(pal_v4(""));
+        assert!(pal_v4("1"));
+        assert!(pal_v4("22$"));
+        assert!(pal_v4("a22$"));
+        assert!(pal_v4("22g$"));
+        assert!(!pal_v4("a22g$"));
+        assert!(pal_v4("a22g$a."));
     }
 }
