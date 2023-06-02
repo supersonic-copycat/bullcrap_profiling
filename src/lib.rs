@@ -39,14 +39,12 @@ pub fn pal_v4(inp: &str) -> bool {
     // &str is utf-8, so I can't index it. Iterating is possble, but it will be n^2
     // each time we request ith char we have to walk from beginning!
     // So solution would be using iterators directly. Also, need to split by graphemes, not chars
-    let len = inp.chars().count();
+    let (len, mut seen) = (inp.chars().count(), 0usize);
     // empty strings and strings from 1 symbol is palindrome!
     if len < 2 {
         return true;
     }
-    let mut seen = 0usize;
-    let mut front = inp.chars();
-    let mut back = inp.chars().rev();
+    let (mut front, mut back) = (inp.chars(), inp.chars().rev());
     let (mut f, mut b) = (None, None);
     while seen < len / 2 {
         loop {
