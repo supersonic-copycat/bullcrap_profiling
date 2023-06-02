@@ -50,32 +50,26 @@ pub fn pal_v4(inp: &str) -> bool {
     let (mut f, mut b) = (None, None);
     while seen < len / 2 {
         loop {
-            match front.next() {
-                Some(c) => {
-                    seen += 1;
-                    if c.is_alphabetic() {
-                        f = Some(c);
-                        break;
-                    }
-                }
-                None => {
+            if let Some(c) = front.next() {
+                seen += 1;
+                if c.is_alphabetic() {
+                    f = Some(c);
                     break;
                 }
-            };
+            } else {
+                break;
+            }
         }
         loop {
-            match back.next() {
-                Some(c) => {
-                    seen += 1;
-                    if c.is_alphabetic() {
-                        b = Some(c);
-                        break;
-                    }
-                }
-                None => {
+            if let Some(c) = back.next() {
+                seen += 1;
+                if c.is_alphabetic() {
+                    b = Some(c);
                     break;
                 }
-            };
+            } else {
+                break;
+            }
         }
         if f != b {
             return false;
