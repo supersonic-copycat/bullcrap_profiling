@@ -20,6 +20,7 @@ path = "examples/main.rs"
 
 [profile.release]
 panic = "abort"
+debug = true
 
 [profile.dev]
 panic = "abort"
