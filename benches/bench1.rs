@@ -22,5 +22,36 @@ fn criterion_benchmark(c: &mut Criterion) {
     });
     g.finish();
 }
-criterion_group!(benches, criterion_benchmark);
+fn mutate(s: &str) -> String {
+    return s.into();
+}
+
+fn repeat_str(s: &str, n: usize) -> String {
+    let mut res = String::with_capacity(s.len() * n);
+    for _ in 0..n {
+        res.push_str(&mutate(s));
+    }
+    res
+}
+
+fn criterion_bench_inputs(c: &mut Criterion) {
+    let base_string = "a roza upala na lapu azora";
+    let mut g = c.benchmark_group("Plindrom_inps");
+    for i in 4..=10 {
+        let test_string = repeat_str(base_string, i);
+        g.throughput(criterion::Throughput::Bytes((i * base_string.len()) as u64));
+        g.bench_with_input(
+            BenchmarkId::from_parameter(i),
+            &test_string.len(),
+            |b, _s| {
+                //
+                b.iter(|| test_palindroms::pal_v4(black_box(&test_string)));
+            },
+        );
+    }
+    g.finish();
+}
+
+//criterion_group!(benches, criterion_benchmark);
+criterion_group!(benches, criterion_bench_inputs);
 criterion_main!(benches);
