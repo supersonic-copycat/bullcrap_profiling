@@ -17,6 +17,9 @@ fn criterion_benchmark(c: &mut Criterion) {
     g.bench_function(BenchmarkId::new("v", "4"), |b| {
         b.iter(|| test_palindroms::pal_v4(black_box(test_string)))
     });
+    g.bench_function(BenchmarkId::new("v", "5"), |b| {
+        b.iter(|| test_palindroms::pal_v5(black_box(test_string)))
+    });
     g.finish();
 }
 criterion_group!(benches, criterion_benchmark);

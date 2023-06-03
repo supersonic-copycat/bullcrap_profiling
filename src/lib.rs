@@ -76,6 +76,23 @@ pub fn pal_v4(inp: &str) -> bool {
     return true;
 }
 
+pub fn pal_v5(inp: &str) -> bool {
+    let mut direct = inp.chars().filter(|c| c.is_alphabetic());
+    let mut reverse = inp.chars().rev().filter(|c| c.is_alphabetic());
+    let len = direct.clone().count();
+    let mut pos = 0usize;
+
+    while pos < len / 2 {
+        let a = direct.next();
+        let b = reverse.next();
+        if a != b {
+            return false;
+        }
+        pos += 1;
+    }
+    return true;
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
