@@ -40,13 +40,16 @@ pub fn pal_v4(inp: &str) -> bool {
     // each time we request ith char we have to walk from beginning!
     // So solution would be using iterators directly. Also, need to split by graphemes, not chars
     let (len, mut seen) = (inp.chars().count(), 0usize);
-    // empty strings and strings from 1 symbol is palindrome!
+    // empty strings and strings from 1 symbol are palindromes!
     if len < 2 {
         return true;
     }
     let (mut front, mut back) = (inp.chars(), inp.chars().rev());
     let (mut f, mut b) = (None, None);
     while seen < len / 2 {
+        // on some pathological strings like "a@...lot of @'s...@a"
+        // each loop will traverse all the @'s, when it's not needed actually
+        // can move check seen < len / 2 inside
         loop {
             if let Some(c) = front.next() {
                 seen += 1;
@@ -55,6 +58,8 @@ pub fn pal_v4(inp: &str) -> bool {
                     break;
                 }
             } else {
+                // when i reached and of the string f will retain it's last value!
+                // probably it can fire in some conditions
                 break;
             }
         }
