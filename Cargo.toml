@@ -14,3 +14,6 @@ criterion = {version = "0.5", features = ["html_reports"] }
 name = "bench1"
 harness = false
 
+[[example]]
+name = "showcase"
+path = "examples/main.rs"
