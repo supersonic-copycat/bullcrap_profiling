@@ -17,3 +17,9 @@ harness = false
 [[example]]
 name = "showcase"
 path = "examples/main.rs"
+
+[profile.release]
+panic = "abort"
+
+[profile.dev]
+panic = "abort"

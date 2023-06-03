@@ -16,9 +16,10 @@ fn present(s: &str, b: bool) -> String {
 }
 
 fn main() {
-    let s = "hi,ih!";
-    println!(
-        "so far so good.\n{}",
-        present(s, run(s, &test_palindroms::pal_v1))
-    );
+    let s = "a ,roza upa__la na lapu azora!a ,roza upa__la na lapu azora!a ,roza upa__la na lapu azora!a ,roza upa__la na lapu azora!";
+    let cap = 10_000;
+    let mut r = Vec::with_capacity(cap);
+    for _ in 0..cap {
+        r.push(std::hint::black_box(run(s, &test_palindroms::pal_v1)));
+    }
 }

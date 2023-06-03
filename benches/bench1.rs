@@ -1,6 +1,6 @@
 use criterion::{black_box, criterion_group, criterion_main, BenchmarkId, Criterion};
 //use test_palindroms;
-
+#[allow(dead_code)]
 fn criterion_benchmark(c: &mut Criterion) {
     let test_string = "a ,roza upa__la na lapu azora!a ,roza upa__la na lapu azora!a ,roza upa__la na lapu azora!a ,roza upa__la na lapu azora!";
     let mut g = c.benchmark_group("Palindrom");
